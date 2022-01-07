@@ -62,3 +62,71 @@
   ![laravel_success](https://user-images.githubusercontent.com/69504543/148386890-f878abad-4fe7-4350-968d-579c82692b01.PNG)
 
   이렇게 하면 기본적인 laravel 설치 및 테스트 화면을 성공적으로 띄울 수 있습니다.
+
+  ## 기본 라우팅
+
+Laravel을 사용하면서 우리가 자주 사용하게 될 폴더는 `app` 과 `routes`, `database` 입니다.
+
+`bootstrap` 폴더는 설정과 관련된 파일이 들어가는데, 당장은 건드리지 않을 예정입니다.
+
+- Laravel은 MVC 모델을 따른다!
+
+  `model` 에 해당하는 부분은 `\app\Models\User.php`
+
+  `controller` 에 해당하는 부분은 `\app\Http\Controllers\Controller.php`
+
+  `view` 에 해당하는 부분은 `\resources\views\welcome.blade.php` 입니다.
+
+  만약 `blade.php` 템플릿을 사용하게 된다면 `views` 아래에 `blade.php` 파일들을 생성하면 됩니다.
+
+  만약 `vue.js` 를 사용하고 싶다면 `js\components` 아래에 파일을 넣으면 됩니다. ~~Laravel이 Vue를 좋아한다네요... 처음 알았습니다.~~
+
+- 화면 전시는 어떻게?
+
+  `\routes\web.php` 을 열어보면 다음과 같은 코드가 있습니다.
+
+  ```php
+  <?php
+  
+  use Illuminate\Support\Facades\Route;
+  
+  /*
+  |--------------------------------------------------------------------------
+  | Web Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register web routes for your application. These
+  | routes are loaded by the RouteServiceProvider within a group which
+  | contains the "web" middleware group. Now create something great!
+  |
+  */
+  
+  Route::get('/', function () {
+      return view('welcome');
+  });
+  
+  ```
+
+  `get();` 안의 첫번째 인수는 `경로` 를 의미합니다. 기본 도메인이 `127.0.0.1:8000` 인데, `8000`뒤에 `/` 가 생략되있습니다.
+
+  나중에 경로 설정을 통해, `만약 이 경로로 들어가면, 이 페이지를 보여주고 싶어!` 라고 만들 수 있는 겁니다.
+  그리고, 보여주고 싶은 페이지를 설정해주는 것이 `return view('welcome');` 부분 입니다.
+
+  해당 파일은 `\resources\views\welcome.blade.php` 에 위치해있으며, `blade.php` 를 제외한 이름을 넣어주면 됩니다.
+
+  만약, `localhost/hello` 주소로 이동했을 때, `welcome.blade.php` 를 보여주고 싶다면, 아래와 같은 코드를  `web.php`에 추가해주면 됩니다.
+
+  ```php
+  Route::get('/', function () {
+      return view('welcome');
+  });
+  
+  Route::get('/hello', function () {
+      return view('welcome');
+  });
+  ```
+
+  ![hello_laravel](https://user-images.githubusercontent.com/69504543/148563203-d11f9baf-a510-4c40-a45b-2f0d90e9b1f1.PNG)
+
+  **정리 :** 라우팅을 하려면 `routes\web.php` 의 코드 추가 및 `resources\views` 에 파일을 추가해주기!
+
