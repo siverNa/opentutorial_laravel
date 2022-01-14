@@ -4,9 +4,9 @@
 <!-- section과 endsection 사이에 넣고싶은 내용 작성
     section안의 태그는 layout의 yield와 대응됨 -->
 @section('title')
-    hello_laravel
+    contact
 @endsection
 
 @section('content')
-    hello_laravel
+    contact
 @endsection

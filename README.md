@@ -130,3 +130,84 @@ Laravel을 사용하면서 우리가 자주 사용하게 될 폴더는 `app` 과
 
   **정리 :** 라우팅을 하려면 `routes\web.php` 의 코드 추가 및 `resources\views` 에 파일을 추가해주기!
 
+## 블레이드 레이아웃
+
+- `ul`, `a href` 
+
+  위의 단어는 `HTML` 태그이며, `ul`은 순서없는 리스트 표현을, `a href` 는 링크를 달수있는 태그입니다.
+
+  ```php
+  <ul>
+      <li><a href="/">Welcome</a></li>
+      <li><a href="/contact">contact</a></li>
+      <li><a href="/hello">hello</a></li>
+  </ul>
+  ```
+
+  위와같은 코드를 넣으면 페이지에 링크가 달려있는 리스트가 출력됩니다.
+
+그런데 만약 위와 같은 **리스트, 또는 중복된 코드를 수십억개의 페이지에 넣어야 한다면?** 또는 **수정된 코드를 수십억개의 페이지에 반영해야한다면?** 정말 끔찍한 일일 것입니다.
+
+> 중복은 최대한 없애야한다 by.생활코딩 이고잉 선생님
+
+이러한 중복을 쉽게 관리할 수 있는 게 바로 **블레이드 레이아웃**입니다!
+
+- blade layout
+
+  공통으로 사용하는 코드를 `layout` 에 모아 코드를 효율적으로 관리합니다.
+
+  ```php
+  <!DOCTYPE html>
+  <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+      <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+          <title>@yield('title', 'Laravel')</title>
+  
+          <!-- Fonts -->
+          <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  
+      </head>
+      <body>
+          <ul>
+              <li><a href="/">Welcome</a></li>
+              <li><a href="/contact">contact</a></li>
+              <li><a href="/hello">hello</a></li>
+          </ul>
+          <h1>@yield('content')</h1>
+      </body>
+  </html>
+  ```
+
+  이렇게 레이아웃을 만들었다면 이제 사용하기만 하면 됩니다.
+
+  이전에 만든 `hello_laravel.blade.php` 와 새로 만들 `content.blade.php` 의 코드를 다음과 같이 바꿔줍니다.
+
+  ```php
+  <!--/views 아래에 있는 layout.blade.php 를 사용하겠다 라는 의미 -->
+  @extends('layout')
+  
+  <!-- section과 endsection 사이에 넣고싶은 내용 작성
+      section안의 태그는 layout의 yield와 대응됨 -->
+  @section('title')
+      hello_laravel
+  @endsection
+  
+  @section('content')
+      hello_laravel
+  @endsection
+  ```
+
+  `content.blade.php` 코드도 위의 코드와 비슷하게 작성해주면 됩니다.
+
+  ![code_diff](https://user-images.githubusercontent.com/69504543/149515898-14c1cdc8-e9e8-4fd7-92e5-1eba0986453a.PNG)
+
+  > 복잡했던 코드가 간단하게 작성된 것을 확인할 수 있습니다.
+
+  만약 `@section('title')` 을 빼면 어떻게 될까요? `layout` 의 `@yield('title', 'Laravel')` 을 보면 `title` 뒤에 `Laravel` 이 적혀있는 걸 볼 수있습니다. 이것은 만약 다른 페이지에서 `title` 을 따로 사용안했다면 디폴트로 `Laravel`을 타이틀로 사용하겠단 뜻입니다.
+
+  
+
+  **정리 :** 레이아웃을 이용하면 이것을 사용하는 모든 페이지의 내용을 동시에 수정해줄 수 있습니다. 
