@@ -3,9 +3,9 @@
 
 <!-- @yield('title') 에 들어갈 내용을 작성 가능 -->
 @section('title')
-    welcome
+    contact
 @endsection
 
 @section('content')
-    welcome
+    contact
 @endsection
