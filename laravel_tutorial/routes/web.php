@@ -14,7 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	$books = [
+		'harry potter',
+		'Laravel'
+	];
+	return view('welcome')->with([
+		'books' => $books
+	]);
 });
 
 Route::get('/hello', function() {
@@ -22,5 +28,5 @@ Route::get('/hello', function() {
 });
 
 Route::get('/contact', function () {
-    return view('contact');
+	return view('contact');
 });

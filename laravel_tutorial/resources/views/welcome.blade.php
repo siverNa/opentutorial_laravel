@@ -3,9 +3,14 @@
 
 <!-- @yield('title') 에 들어갈 내용을 작성 가능 -->
 @section('title')
-    welcome
+	welcome
 @endsection
 
 @section('content')
-    welcome
+	welcome
+	<ul>
+		@foreach ($books as $book)
+			<li>{{ $book }}</li>
+		@endforeach
+	</ul>
 @endsection
