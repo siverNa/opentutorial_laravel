@@ -8,14 +8,8 @@
     <title>@yield('title', 'laravel')</title>
 </head>
 <body>
-    <ul>
-        <li><a href="/">welcome</a></li>
-        <li><a href="/hello">hello</a></li>
-        <li><a href="/contact">contact</a></li>
-    </ul>
-    <h1 class="text-3xl font-bold underline bg-red-800">
-        Hello world!
-    </h1>
-    @yield('content')
+    <div class="container mx-auto">
+        @yield('content')
+    </div>
 </body>
 </html>
