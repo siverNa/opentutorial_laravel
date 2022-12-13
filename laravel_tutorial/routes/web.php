@@ -21,6 +21,8 @@ Route::get('/contact', 'HomeController@contact');
 
 Route::get('/projects', 'ProjectController@index');
 
+//task 프로젝트 라우트
 Route::get('/tasks', 'TaskController@index');
 Route::get('/tasks/create', 'TaskController@create');
 Route::post('/tasks', 'TaskController@store');
+Route::get('/tasks/{task}', 'TaskController@show');

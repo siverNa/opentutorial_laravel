@@ -28,6 +28,13 @@ class TaskController extends Controller
             'body' => $request->input('body')
         ]);
 
-        return redirect('/tasks');
+        return redirect('/tasks/'.$task->id);
+    }
+
+    public function show(Task $task)
+    {
+        return view('tasks.show', [
+            'task' => $task
+        ]);
     }
 }
