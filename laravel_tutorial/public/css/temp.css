@@ -1,0 +1,39 @@
+.tpx-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.tpy-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+.tflex-1
+{
+    flex: 1 1 0%;
+}
+
+.tflex-auto
+{
+    flex: 1 1 auto;
+}
+
+.tflex-initial
+{
+    flex: 0 1 auto;
+}
+
+.tflex-none
+{
+    flex: none;
+}
+
+.flex
+{
+    display: flex;
+}
+
+.bg-green-500
+{
+    background-color: #48bb78;
+}
