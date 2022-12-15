@@ -21,15 +21,21 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
-    public function store(Request $request)
+    public function store()
     {
+        request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $task = Task::create([
-            'title' => $request->input('title'),//input 태그의 name 삽입
-            'body' => $request->input('body')
+            'title' => request('title'),//input 태그의 name 삽입
+            'body' => request('body')
         ]);
 
         return redirect('/tasks/'.$task->id);
     }
+
 
     public function show(Task $task)
     {
@@ -47,6 +53,11 @@ class TaskController extends Controller
 
     public function update(Task $task)
     {
+        request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
         $task->update([
             'title' => request('title'),
             'body' => request('body')

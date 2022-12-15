@@ -10,10 +10,16 @@
         <form action="/tasks" method="POST">
             @csrf
             <label class="block" for="title">Title</label>
-            <input class="border border-dark w-100" type="text" name="title" id="title"><br>
+            <input class="border border-dark w-100 @error('title') border border-red-700 @enderror" type="text" name="title" id="title" required><br>
+            @error('title')
+                <small class="text-red-700">{{ $message }}</small>
+            @enderror
 
             <label class="block" for="body">Body</label>
-            <textarea class="border border-dark w-100" name="body" id="body" cols="30" rows="10"></textarea><br>
+            <textarea class="border border-dark w-100 @error('body') border border-red-700 @enderror" name="body" id="body" cols="30" rows="10" required></textarea><br>
+            @error('body')
+                <small class="text-red-700">{{ $message }}</small>
+            @enderror
 
             <button class="text-white bg-red-800 px-4 py-2 float-right" type="submit">Submit</button>
         </form>
